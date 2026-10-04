@@ -11,8 +11,7 @@ export const metadata: Metadata = {
 export default function VerifyEmailPage() {
   return (
     <AuthLayout
-      art="necklace"
-      color="#24211F"
+      image="/img/vestido-midi-corset-fenda-preto.webp"
       eyebrow="Quase lá"
       title="Confirme seu e-mail"
       text="Digite o código que enviamos para ativar sua conta com segurança."

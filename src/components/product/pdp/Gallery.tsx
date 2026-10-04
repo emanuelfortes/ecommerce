@@ -24,13 +24,16 @@ export function Gallery({ product, color }: { product: Product; color: string })
     const r = e.currentTarget.getBoundingClientRect();
     set({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 });
   };
-  const go = (dir: 1 | -1) => setActive((i) => (i + dir + 4) % 4);
+  // com fotos reais, a galeria mostra só as fotos; sem elas, as 4 vistas ilustradas
+  const views = product.images?.length ? product.images.map((_, i) => `Foto ${i + 1}`) : VIEWS;
+  const total = views.length;
+  const go = (dir: 1 | -1) => setActive((i) => (i + dir + total) % total);
 
   return (
     <div className="flex flex-col-reverse gap-3 lg:flex-row lg:gap-4">
       {/* Miniaturas */}
-      <div className="no-scrollbar flex gap-2 overflow-x-auto lg:w-20 lg:shrink-0 lg:flex-col lg:overflow-visible">
-        {VIEWS.map((label, i) => (
+      <div className={clsx("no-scrollbar flex gap-2 overflow-x-auto lg:w-20 lg:shrink-0 lg:flex-col lg:overflow-visible", total < 2 && "hidden")}>
+        {views.map((label, i) => (
           <button
             key={label}
             onClick={() => setActive(i)}
@@ -78,7 +81,7 @@ export function Gallery({ product, color }: { product: Product; color: string })
           {off > 0 && <Badge tone="gold">-{off}%</Badge>}
         </div>
 
-        <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 md:hidden">
+        <div className={clsx("absolute inset-y-0 left-0 right-0 flex items-center justify-between px-2 md:hidden", total < 2 && "hidden")}>
           <button onClick={() => go(-1)} aria-label="Imagem anterior" className="grid size-9 place-items-center rounded-full bg-white/80 text-ink">
             <ArrowLeft className="size-4" strokeWidth={1.3} />
           </button>
@@ -87,7 +90,7 @@ export function Gallery({ product, color }: { product: Product; color: string })
           </button>
         </div>
         <p className="mt-3 text-center text-[10px] uppercase tracking-[0.22em] text-taupe">
-          {VIEWS[active]} · {active + 1}/4 <span className="hidden md:inline">· passe o cursor para ampliar</span>
+          {views[active]} · {active + 1}/{total} <span className="hidden md:inline">· passe o cursor para ampliar</span>
         </p>
       </div>
 
@@ -117,6 +120,8 @@ export function Gallery({ product, color }: { product: Product; color: string })
                 <ProductImage product={product} index={active} color={color} />
               </div>
             </button>
+            {total > 1 && (
+              <>
             <button
               onClick={() => go(-1)}
               aria-label="Imagem anterior"
@@ -131,10 +136,12 @@ export function Gallery({ product, color }: { product: Product; color: string })
             >
               <ArrowRight className="size-4" strokeWidth={1.3} />
             </button>
+              </>
+            )}
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex gap-2">
-              {VIEWS.map((label, i) => (
+            <div className={clsx("flex gap-2", total < 2 && "hidden")}>
+              {views.map((label, i) => (
                 <button
                   key={label}
                   onClick={() => setActive(i)}

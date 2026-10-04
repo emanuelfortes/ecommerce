@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import clsx from "clsx";
 import { ShoppingBag, HeartOff, Copy, Check, Ticket, ArrowRight } from "lucide-react";
 import { coupons, getBrand, getProduct, products } from "@/lib/data";
 import { useStore } from "@/components/providers/StoreProvider";
@@ -169,8 +170,8 @@ export function QuickView() {
         <div className="grid md:grid-cols-2">
           <div className="bg-nude">
             <ProductImage product={p} index={img} color={color} />
-            <div className="grid grid-cols-4 gap-1 p-1">
-              {[0, 1, 2, 3].map((i) => (
+            <div className={clsx("grid grid-cols-4 gap-1 p-1", p.images?.length === 1 && "hidden")}>
+              {(p.images?.length ? p.images.map((_, i) => i) : [0, 1, 2, 3]).map((i) => (
                 <button key={i} onClick={() => setImg(i)} className={img === i ? "ring-1 ring-ink" : "opacity-70 hover:opacity-100"} aria-label={`Imagem ${i + 1}`}>
                   <ProductImage product={p} index={i} color={color} />
                 </button>

@@ -4,7 +4,8 @@ import { bestsellers, blogPosts, categories, newArrivals, onSale, getProduct } f
 import { aos } from "@/lib/aos";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading, Ornament } from "@/components/ui/Primitives";
-import { ProductArt } from "@/components/product/ProductArt";
+import { ProductImage } from "@/components/product/ProductImage";
+import { Photo } from "@/components/shared/Photo";
 import { ProductCarousel } from "@/components/product/ProductCarousel";
 import { ProductGrid } from "@/components/product/ProductCard";
 import { Perks } from "@/components/layout/Footer";
@@ -15,6 +16,8 @@ import { Price } from "@/components/product/Price";
 /** Tela 1: Home */
 export default function HomePage() {
   const hero = getProduct("p1")!;
+  const cover = getProduct("p3")!;
+  const insta = ["p3", "p9", "p12", "p7", "p10", "p2"].map((id) => getProduct(id)!);
   return (
     <>
       {/* HERO: fundo off-white, título preto, texto taupe, destaques dourados */}
@@ -22,16 +25,16 @@ export default function HomePage() {
         <div className="container-km grid items-center gap-12 py-14 md:py-20 lg:grid-cols-12 lg:py-24">
           <div className="lg:col-span-6" {...aos.fadeUp()}>
             <span className="eyebrow flex items-center gap-3">
-              <span className="h-px w-8 bg-gold" /> Coleção Aurora · Primavera 2027
+              <span className="h-px w-8 bg-gold" /> Coleção Aurora · Primavera Verão 2027
             </span>
             <h1 className="mt-6 text-[52px] leading-[0.95] text-ink sm:text-7xl xl:text-[96px]">
-              A elegância
+              Cores que
               <br />
-              que <em className="font-light text-gold">permanece</em>
+              vestem <em className="font-light text-gold">presença</em>
             </h1>
             <p className="mt-7 max-w-md text-[16px] leading-relaxed text-taupe">
-              Cetim que flui, alfaiataria que acolhe e detalhes dourados que assinam. Peças criadas para mulheres que
-              vestem a própria história.
+              Vestidos longos em camadas, conjuntos de pantalona e alfaiataria em cetim. Peças que abraçam as curvas e
+              assinam cada chegada, do sol da tarde às noites de festa.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button href="/campanha/aurora">
@@ -58,7 +61,7 @@ export default function HomePage() {
           <div className="relative lg:col-span-6" {...aos.zoomIn(150)}>
             <div className="relative mx-auto aspect-[4/5] w-full max-w-[520px]">
               <div className="absolute inset-0 overflow-hidden rounded-t-full border border-champagne/60 bg-nude">
-                <ProductArt kind="dress" tone={0} color="#D8C3A5" className="size-full" label="Vestido Midi Cetim Aurora" />
+                <ProductImage product={cover} className="!absolute inset-0 !aspect-auto size-full" />
               </div>
               <span className="absolute -left-6 top-16 hidden size-28 rounded-full border border-gold/60 md:block" />
               <span className="absolute -right-3 bottom-24 hidden h-40 w-px bg-gold md:block" />
@@ -67,7 +70,7 @@ export default function HomePage() {
                 className="absolute -bottom-6 left-4 right-4 flex items-center gap-4 border border-line bg-white/95 p-4 shadow-xl backdrop-blur transition-colors hover:border-champagne sm:left-auto sm:right-[-12px] sm:w-72"
               >
                 <div className="w-14 shrink-0 overflow-hidden">
-                  <ProductArt kind="dress" tone={1} color="#0D0D0D" className="aspect-[3/4] w-full" />
+                  <ProductImage product={hero} />
                 </div>
                 <div className="flex-1">
                   <p className="text-[10px] uppercase tracking-[0.2em] text-taupe">Destaque</p>
@@ -84,16 +87,16 @@ export default function HomePage() {
       <section className="bg-white py-20 md:py-24">
         <div className="container-km">
           <SectionHeading eyebrow="Explore" title="Compre por categoria" />
-          <div className="no-scrollbar -mx-4 flex snap-x gap-4 overflow-x-auto px-4 md:mx-0 md:grid md:grid-cols-4 md:gap-6 md:px-0 lg:grid-cols-8">
+          <div className="no-scrollbar -mx-4 flex snap-x gap-4 overflow-x-auto px-4 md:mx-0 md:grid md:grid-cols-4 md:gap-6 md:px-0">
             {categories.map((c, i) => (
               <Link
                 key={c.slug}
                 href={`/categoria/${c.slug}`}
                 {...aos.fadeUp(i * 60)}
-                className="group flex w-32 shrink-0 snap-start flex-col items-center text-center md:w-auto"
+                className="group flex w-40 shrink-0 snap-start flex-col items-center text-center md:w-auto"
               >
                 <div className="aspect-[3/4] w-full overflow-hidden rounded-t-full border border-line transition-colors duration-500 group-hover:border-gold">
-                  <ProductArt kind={c.art} tone={i % 3} color={["#D8C3A5", "#F7F4EF", "#0D0D0D", "#E8D8D2"][i % 4]} className="size-full transition-transform duration-700 group-hover:scale-105" />
+                  {c.image && <Photo src={c.image} alt={c.name} className="size-full transition-transform duration-700 group-hover:scale-105" />}
                 </div>
                 <span className="mt-4 font-serif text-lg text-ink transition-colors group-hover:text-gold">{c.name}</span>
               </Link>
@@ -126,10 +129,10 @@ export default function HomePage() {
           <div className="relative order-2 md:order-1" {...aos.zoomIn()}>
             <div className="grid grid-cols-2 gap-4">
               <div className="aspect-[3/4] overflow-hidden">
-                <ProductArt kind="blazer" tone={2} color="#0D0D0D" className="size-full" />
+                <ProductImage product={getProduct("p5")!} className="h-full" />
               </div>
               <div className="mt-16 aspect-[3/4] overflow-hidden">
-                <ProductArt kind="pants" tone={0} color="#CDBBA3" className="size-full" />
+                <ProductImage product={getProduct("p6")!} className="h-full" />
               </div>
             </div>
             <span className="absolute -bottom-4 left-1/2 h-16 w-px -translate-x-1/2 bg-gold" />
@@ -142,18 +145,18 @@ export default function HomePage() {
             </h2>
             <span className="gold-rule mt-6" />
             <p className="mt-6 max-w-md text-[16px] leading-relaxed text-graphite">
-              Blazers de ombros precisos, calças de cintura alta e coletes que vestem com intenção. A alfaiataria Karen
-              Michelly é pensada para o corpo da mulher brasileira.
+              Blazers alongados, camisas de cetim e calças de cintura alta em azul marinho e off-white. A alfaiataria
+              Karen Michelly é pensada para o corpo da mulher brasileira.
             </p>
             <ul className="mt-6 flex flex-col gap-2 text-sm text-graphite">
               <li className="flex items-center gap-3"><span className="size-1.5 rotate-45 bg-gold" /> Modelagem exclusiva do ateliê</li>
-              <li className="flex items-center gap-3"><span className="size-1.5 rotate-45 bg-gold" /> Crepe de lã fria e linho italiano</li>
+              <li className="flex items-center gap-3"><span className="size-1.5 rotate-45 bg-gold" /> Crepe de lã fria e cetim acetinado</li>
               <li className="flex items-center gap-3"><span className="size-1.5 rotate-45 bg-gold" /> Ajustes gratuitos na loja física</li>
             </ul>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button href="/colecao/alfaiataria">Explorar o edit</Button>
-              <Button href="/categoria/casacos/blazers" variant="secondary">
-                Blazers
+              <Button href="/categoria/alfaiataria/terninhos" variant="secondary">
+                Terninhos
               </Button>
             </div>
           </div>
@@ -200,7 +203,7 @@ export default function HomePage() {
         <div className="container-km grid gap-6 md:grid-cols-2">
           <Link href="/ofertas" {...aos.fadeUp()} className="group relative flex min-h-80 flex-col justify-end overflow-hidden bg-offwhite p-8 md:p-10">
             <div className="absolute inset-y-0 right-0 w-1/2 opacity-90 transition-transform duration-700 group-hover:scale-105">
-              <ProductArt kind="bag" tone={1} color="#0D0D0D" className="size-full" />
+              <ProductImage product={getProduct("p10")!} className="h-full" />
             </div>
             <div className="relative max-w-[55%]">
               <span className="eyebrow">Ofertas</span>
@@ -213,7 +216,7 @@ export default function HomePage() {
           </Link>
           <Link href="/cupons" {...aos.fadeUp(120)} className="group relative flex min-h-80 flex-col justify-end overflow-hidden bg-ink p-8 text-white md:p-10">
             <div className="absolute inset-y-0 right-0 w-1/2 opacity-90 transition-transform duration-700 group-hover:scale-105">
-              <ProductArt kind="necklace" tone={3} color="#24211F" variant={3} className="size-full" />
+              <ProductImage product={getProduct("p2")!} className="h-full" />
             </div>
             <div className="relative max-w-[55%]">
               <span className="eyebrow text-champagne/70">Primeira compra</span>
@@ -257,9 +260,9 @@ export default function HomePage() {
             <p className="mt-2 text-sm text-taupe">Marque nossas peças e apareça por aqui</p>
           </div>
           <div className="grid grid-cols-3 gap-1 md:grid-cols-6">
-            {(["dress", "heels", "blouse", "bag", "skirt", "necklace"] as const).map((k, i) => (
-              <a key={k} href="https://instagram.com" target="_blank" rel="noreferrer" {...aos.zoomIn(i * 60)} className="group relative aspect-square overflow-hidden">
-                <ProductArt kind={k} tone={i % 4} color={["#D8C3A5", "#0D0D0D", "#F7F4EF", "#A87B4F", "#E8D8D2", "#C6A15B"][i]} className="size-full" />
+            {insta.map((p, i) => (
+              <a key={p.id} href="https://instagram.com" target="_blank" rel="noreferrer" {...aos.zoomIn(i * 60)} className="group relative aspect-square overflow-hidden">
+                <ProductImage product={p} className="h-full" />
                 <span className="absolute inset-0 grid place-items-center bg-ink/0 text-white opacity-0 transition-all duration-500 group-hover:bg-ink/40 group-hover:opacity-100">
                   <SocialIcon name="instagram" className="size-6" />
                 </span>

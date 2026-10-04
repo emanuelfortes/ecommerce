@@ -12,8 +12,7 @@ export default function SignupPage() {
   return (
     <AuthLayout
       wide
-      art="blazer"
-      color="#0D0D0D"
+      image="/img/conjunto-alfaiataria-blazer-camisa-cetim-azul-marinho.webp"
       eyebrow="Nova cliente"
       title="Criar conta"
       text="Ganhe 10% na primeira compra, acompanhe pedidos e receba lançamentos do Atelier em primeira mão."

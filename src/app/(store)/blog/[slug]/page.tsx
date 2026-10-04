@@ -6,7 +6,7 @@ import { blogCategories, blogPosts, getAuthor, getPost } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import { aos } from "@/lib/aos";
 import { Breadcrumbs, SectionHeading } from "@/components/ui/Primitives";
-import { ProductArt } from "@/components/product/ProductArt";
+import { Photo } from "@/components/shared/Photo";
 import { ProductCarousel } from "@/components/product/ProductCarousel";
 import { PostCard } from "@/components/shared/PostCard";
 import { AuthorAvatar, PostBody, shopTheLook } from "@/components/content/Blog";
@@ -101,12 +101,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
         <div className="container-km" {...aos.zoomIn()}>
-          <ProductArt
-            kind={post.art}
-            tone={post.tone}
-            color={["#D8C3A5", "#0D0D0D", "#E8D8D2", "#F7F4EF"][post.tone]}
-            variant={3}
-            label={post.title}
+          <Photo
+            src={post.image}
+            alt={post.title}
             className="aspect-[16/9] w-full md:aspect-[21/9]"
           />
         </div>

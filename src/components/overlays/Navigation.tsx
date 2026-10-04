@@ -58,8 +58,7 @@ export function MobileMenu() {
               )
             )}
             {[
-              { label: "Moda Praia", href: "/categoria/praia" },
-              { label: "Macacões", href: "/categoria/macacoes" },
+              { label: "Coleção Aurora", href: "/campanha/aurora" },
               { label: "Marcas", href: "/marcas" },
               { label: "Journal", href: "/blog" },
             ].map((l) => (
@@ -171,7 +170,7 @@ export function SearchOverlay() {
               ref={inputRef}
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Vestidos, alfaiataria, seda..."
+              placeholder="Vestidos, conjuntos, alfaiataria..."
               aria-label="Buscar produtos"
               className="w-full bg-transparent font-serif text-3xl text-ink placeholder:text-taupe/50 focus:outline-none md:text-5xl"
             />

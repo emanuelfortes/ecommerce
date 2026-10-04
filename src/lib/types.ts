@@ -57,6 +57,8 @@ export interface Category {
   name: string;
   description: string;
   art: ArtKind;
+  /** Foto de capa da categoria. Sem ela, a ilustração editorial é exibida. */
+  image?: string;
   subcategories: Subcategory[];
 }
 
@@ -172,8 +174,8 @@ export interface BlogPost {
   author: string;
   date: string;
   readTime: number;
-  art: ArtKind;
-  tone: number;
+  /** Foto de capa do post. */
+  image: string;
   body: { type: "p" | "h2" | "quote" | "list"; text: string | string[] }[];
 }
 

@@ -6,7 +6,7 @@ import { formatDate } from "@/lib/format";
 import { aos } from "@/lib/aos";
 import { PageHeader } from "@/components/ui/Primitives";
 import { PostCard } from "@/components/shared/PostCard";
-import { ProductArt } from "@/components/product/ProductArt";
+import { Photo } from "@/components/shared/Photo";
 import { AuthorAvatar, CategoryPills } from "@/components/content/Blog";
 import { NewsletterCallout } from "@/components/content/NewsletterCallout";
 
@@ -40,12 +40,9 @@ export default function BlogPage() {
         <div className="container-km">
           <article className="group grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
             <Link href={`/blog/${featured.slug}`} className="block overflow-hidden lg:col-span-7" {...aos.zoomIn()}>
-              <ProductArt
-                kind={featured.art}
-                tone={featured.tone}
-                color={["#D8C3A5", "#0D0D0D", "#E8D8D2", "#F7F4EF"][featured.tone]}
-                variant={3}
-                label={featured.title}
+              <Photo
+                src={featured.image}
+                alt={featured.title}
                 className="aspect-[16/11] w-full transition-transform duration-700 group-hover:scale-105"
               />
             </Link>

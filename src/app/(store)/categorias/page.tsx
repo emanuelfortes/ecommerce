@@ -4,15 +4,14 @@ import { ArrowRight } from "lucide-react";
 import { categories, products } from "@/lib/data";
 import { aos } from "@/lib/aos";
 import { PageHeader, Ornament } from "@/components/ui/Primitives";
-import { ProductArt } from "@/components/product/ProductArt";
+import { Photo } from "@/components/shared/Photo";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Categorias",
-  description: "Explore todas as categorias Karen Michelly: vestidos, blusas, alfaiataria, casacos, acessórios e moda praia.",
+  description: "Explore todas as categorias Karen Michelly: vestidos, conjuntos, alfaiataria e macacões.",
 };
 
-const swatches = ["#D8C3A5", "#0D0D0D", "#F7F4EF", "#E8D8D2"];
 
 /** Tela 4: Categorias */
 export default function CategoriesPage() {
@@ -33,14 +32,7 @@ export default function CategoriesPage() {
               <article key={c.slug} {...aos.fadeUp((i % 4) * 80)} className={i % 2 === 1 ? "lg:mt-16" : undefined}>
                 <Link href={`/categoria/${c.slug}`} className="group block">
                   <div className="relative aspect-[3/4] overflow-hidden rounded-t-full border border-line transition-colors duration-500 group-hover:border-gold">
-                    <ProductArt
-                      kind={c.art}
-                      tone={i % 3}
-                      color={swatches[i % 4]}
-                      variant={i === 3 || i === 6 ? 3 : 0}
-                      className="size-full transition-transform duration-700 group-hover:scale-105"
-                      label={c.name}
-                    />
+                    {c.image && <Photo src={c.image} alt={c.name} className="size-full transition-transform duration-700 group-hover:scale-105" />}
                     <span className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-ink backdrop-blur">
                       {count} {count === 1 ? "peça" : "peças"}
                     </span>

@@ -101,7 +101,7 @@ export function PostBody({ body }: { body: BlogPost["body"] }) {
 
 /** Seleciona produtos para o carrossel "Compre o look" de um artigo. */
 export function shopTheLook(post: BlogPost, n = 8): Product[] {
-  const byArt = products.filter((p) => p.art === post.art && p.stock === "disponivel");
-  const rest = products.filter((p) => !byArt.includes(p) && p.stock === "disponivel" && (p.isBestseller || p.isNew));
-  return [...byArt, ...rest].slice(0, n);
+  const featured = products.filter((p) => p.images?.includes(post.image) && p.stock === "disponivel");
+  const rest = products.filter((p) => !featured.includes(p) && p.stock === "disponivel" && (p.isBestseller || p.isNew));
+  return [...featured, ...rest].slice(0, n);
 }

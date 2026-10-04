@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function RecoverPasswordPage() {
   return (
     <AuthLayout
-      art="knit"
+      image="/img/vestido-longo-argola-off-white.webp"
       eyebrow="Acesso"
       title="Esqueceu a senha?"
       text="Informe o e-mail cadastrado e enviaremos um link seguro para você criar uma nova senha."

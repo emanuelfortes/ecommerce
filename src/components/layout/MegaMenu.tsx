@@ -4,7 +4,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { ArrowRight } from "lucide-react";
 import { categories, products } from "@/lib/data";
-import { ProductArt } from "@/components/product/ProductArt";
+import { ProductImage } from "@/components/product/ProductImage";
 
 /** Tela 113: Mega Menu */
 export function MegaMenu({ slug, onEnter, onLeave }: { slug: string | null; onEnter: () => void; onLeave: () => void }) {
@@ -48,7 +48,7 @@ export function MegaMenu({ slug, onEnter, onLeave }: { slug: string | null; onEn
               <li><Link className="hover:text-gold" href="/ofertas">Ofertas especiais</Link></li>
               <li><Link className="hover:text-gold" href="/campanha/aurora">Coleção Aurora</Link></li>
               <li><Link className="hover:text-gold" href="/colecao/alfaiataria">Edit: Alfaiataria</Link></li>
-              <li><Link className="hover:text-gold" href="/marcas">Nossas marcas</Link></li>
+              <li><Link className="hover:text-gold" href="/colecao/festa">Edit: Festa</Link></li>
             </ul>
           </div>
           <div className="col-span-6 grid grid-cols-2 gap-5">
@@ -56,12 +56,7 @@ export function MegaMenu({ slug, onEnter, onLeave }: { slug: string | null; onEn
               featured.map((p) => (
                 <Link key={p.id} href={`/produto/${p.slug}`} className="group block">
                   <div className="aspect-[4/3] overflow-hidden">
-                    <ProductArt
-                      kind={p.art}
-                      tone={p.tone}
-                      color={p.colors[0].hex}
-                      className="size-full transition-transform duration-700 group-hover:scale-105"
-                    />
+                    <ProductImage product={p} className="!aspect-auto h-full transition-transform duration-700 group-hover:scale-105" />
                   </div>
                   <p className="mt-3 font-serif text-lg text-ink">{p.name}</p>
                   <p className="text-[11px] uppercase tracking-[0.2em] text-taupe">Descobrir</p>

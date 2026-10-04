@@ -56,7 +56,7 @@ export function ProfileView() {
             <dl>
               <Row label="Tamanho de roupa" value={me.size} />
               <Row label="Numeração de calçado" value={me.shoe} />
-              <Row label="Interesses" value="Alfaiataria · Seda · Festa" />
+              <Row label="Interesses" value="Alfaiataria · Cetim · Festa" />
             </dl>
           </Panel>
           <section className="bg-nude p-6 md:p-8">

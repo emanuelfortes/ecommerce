@@ -7,9 +7,9 @@ import { aos } from "@/lib/aos";
 import { Breadcrumbs } from "@/components/ui/Primitives";
 import { EmptyState } from "@/components/ui/Feedback";
 import { Button } from "@/components/ui/Button";
-import { ProductArt } from "@/components/product/ProductArt";
 import { ProductListing } from "@/components/product/ProductListing";
-import { getBrandArt } from "@/components/store/brandArt";
+import { getBrandImage } from "@/components/store/brandArt";
+import { Photo } from "@/components/shared/Photo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -30,7 +30,6 @@ export default async function BrandPage({ params }: Props) {
   const brand = getBrand(slug);
   if (!brand) notFound();
   const list = products.filter((p) => p.brand === brand.slug);
-  const a = getBrandArt(brand.slug);
   const avg = list.length ? list.reduce((s, p) => s + p.rating, 0) / list.length : 0;
   const others = brands.filter((b) => b.slug !== brand.slug);
 
@@ -64,7 +63,7 @@ export default async function BrandPage({ params }: Props) {
           </div>
           <div className="relative md:col-span-5" {...aos.zoomIn(150)}>
             <div className="mx-auto aspect-[4/5] max-w-sm overflow-hidden rounded-t-full border border-champagne">
-              <ProductArt kind={a.art} tone={a.tone} color={a.color} variant={a.variant} className="size-full" label={brand.name} />
+              <Photo src={getBrandImage(brand.slug)} alt={brand.name} className="size-full" />
             </div>
             <span className="absolute -bottom-6 left-1/2 hidden h-16 w-px -translate-x-1/2 bg-gold md:block" />
           </div>

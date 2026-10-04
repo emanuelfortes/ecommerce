@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s · Karen Michelly",
   },
   description:
-    "Moda feminina elegante e contemporânea. Vestidos, alfaiataria, seda e acessórios com acabamento de ateliê.",
+    "Moda feminina elegante e contemporânea. Vestidos, conjuntos, alfaiataria e macacões com acabamento de ateliê.",
   openGraph: {
     type: "website",
     locale: "pt_BR",

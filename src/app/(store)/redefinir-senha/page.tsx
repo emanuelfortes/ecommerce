@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ResetPasswordPage() {
   return (
     <AuthLayout
-      art="coat"
+      image="/img/conjunto-alfaiataria-blazer-calca-off-white.webp"
       eyebrow="Acesso"
       title="Crie uma nova senha"
       text="Escolha uma senha forte, que você ainda não tenha usado em outros sites."

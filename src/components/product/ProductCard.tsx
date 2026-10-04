@@ -29,11 +29,13 @@ export function ProductCard({ product, index = 0, animate = true }: { product: P
         <Link href={`/produto/${product.slug}`} aria-label={product.name} className="block">
           <ProductImage product={product} className={clsx(unavailable && "opacity-70")} />
           {/* segunda imagem no hover */}
-          <ProductImage
-            product={product}
-            index={2}
-            className="!absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
-          />
+          {(product.images?.length ?? 0) !== 1 && (
+            <ProductImage
+              product={product}
+              index={2}
+              className="!absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+            />
+          )}
         </Link>
 
         <div className="pointer-events-none absolute left-3 top-3 flex flex-col gap-1.5">

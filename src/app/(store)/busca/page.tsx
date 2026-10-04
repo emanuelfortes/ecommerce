@@ -6,7 +6,7 @@ import { aos } from "@/lib/aos";
 import { PageHeader, SectionHeading } from "@/components/ui/Primitives";
 import { EmptyState } from "@/components/ui/Feedback";
 import { Button } from "@/components/ui/Button";
-import { ProductArt } from "@/components/product/ProductArt";
+import { Photo } from "@/components/shared/Photo";
 import { ProductListing } from "@/components/product/ProductListing";
 import { ProductCarousel } from "@/components/product/ProductCarousel";
 
@@ -18,7 +18,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const q = readQ((await searchParams).q);
   return {
     title: q ? `Busca por “${q}”` : "Busca",
-    description: "Encontre vestidos, alfaiataria, seda e acessórios Karen Michelly.",
+    description: "Encontre vestidos, conjuntos, alfaiataria e macacões Karen Michelly.",
     robots: { index: false, follow: true },
   };
 }
@@ -85,7 +85,7 @@ export default async function SearchPage({ searchParams }: Props) {
               {categories.map((c, i) => (
                 <Link key={c.slug} href={`/categoria/${c.slug}`} {...aos.fadeUp((i % 4) * 60)} className="group flex items-center gap-4 border border-line bg-offwhite p-3 transition-colors hover:border-champagne">
                   <div className="w-16 shrink-0 overflow-hidden rounded-t-full">
-                    <ProductArt kind={c.art} tone={i % 3} color={["#D8C3A5", "#0D0D0D", "#F7F4EF", "#E8D8D2"][i % 4]} className="aspect-[3/4] w-full" />
+                    {c.image && <Photo src={c.image} alt={c.name} className="aspect-[3/4] w-full" />}
                   </div>
                   <div>
                     <p className="font-serif text-xl leading-tight text-ink transition-colors group-hover:text-gold">{c.name}</p>

@@ -4,7 +4,7 @@ import { stores } from "@/lib/data";
 import { aos } from "@/lib/aos";
 import { Button } from "@/components/ui/Button";
 import { Breadcrumbs, Ornament, SectionHeading } from "@/components/ui/Primitives";
-import { ProductArt } from "@/components/product/ProductArt";
+import { Photo } from "@/components/shared/Photo";
 
 export const metadata: Metadata = {
   title: "Sobre nós",
@@ -18,7 +18,7 @@ const timeline = [
   { year: "2017", title: "Atelier Jardins", text: "Inauguração da loja conceito na Rua Oscar Freire, com provador de ajustes." },
   { year: "2020", title: "Loja online", text: "O ateliê chega a todo o Brasil com entregas embaladas à mão." },
   { year: "2023", title: "Leblon", text: "Abertura da segunda loja física, no Rio de Janeiro, e lançamento da linha KM Noir." },
-  { year: "2026", title: "Coleção Aurora", text: "Cetim, linho e dourado em uma coleção que celebra 15 anos de história." },
+  { year: "2026", title: "Coleção Aurora", text: "Cetim, crochê e alfaiataria em uma coleção que celebra 15 anos de história." },
 ];
 
 const values = [
@@ -71,10 +71,10 @@ export default function AboutPage() {
           <div className="relative lg:col-span-6" {...aos.zoomIn(120)}>
             <div className="grid grid-cols-5 gap-4">
               <div className="col-span-3 aspect-[3/4] overflow-hidden rounded-t-full border border-champagne/60">
-                <ProductArt kind="blazer" tone={0} color="#0D0D0D" className="size-full" label="Blazer de alfaiataria do ateliê" />
+                <Photo src="/img/conjunto-alfaiataria-blazer-calca-off-white.webp" alt="Conjunto de alfaiataria do ateliê" className="size-full" />
               </div>
               <div className="col-span-2 mt-24 aspect-[3/4] overflow-hidden">
-                <ProductArt kind="dress" tone={1} color="#D8C3A5" className="size-full" label="Vestido em cetim" />
+                <Photo src="/img/vestido-midi-cetim-fenda-champagne.webp" alt="Vestido midi em cetim" className="size-full" />
               </div>
             </div>
             <span className="absolute -bottom-6 left-1/3 h-20 w-px bg-gold" />
@@ -156,10 +156,10 @@ export default function AboutPage() {
           <div {...aos.zoomIn()} className="relative">
             <div className="grid grid-cols-2 gap-4">
               <div className="aspect-[3/4] overflow-hidden">
-                <ProductArt kind="pants" tone={2} color="#24211F" className="size-full" />
+                <Photo src="/img/conjunto-top-calca-pantalona-preto.webp" alt="Conjunto de pantalona preto" className="size-full" />
               </div>
               <div className="mt-16 aspect-[3/4] overflow-hidden">
-                <ProductArt kind="blouse" tone={0} color="#F7F4EF" variant={1} className="size-full" />
+                <Photo src="/img/camisa-cetim-rosa-saia-midi-off-white.webp" alt="Camisa de cetim e saia midi" className="size-full" />
               </div>
             </div>
           </div>
@@ -234,7 +234,7 @@ export default function AboutPage() {
             {stores.map((s, i) => (
               <article key={s.name} className="group flex border border-line bg-offwhite transition-colors hover:border-champagne" {...aos.fadeUp(i * 100)}>
                 <div className="hidden w-40 shrink-0 overflow-hidden sm:block">
-                  <ProductArt kind={i ? "bag" : "coat"} tone={i ? 3 : 1} color={i ? "#C6A15B" : "#0D0D0D"} className="size-full" />
+                  <Photo src={i ? "/img/vestido-longo-argola-off-white.webp" : "/img/conjunto-alfaiataria-blazer-camisa-cetim-azul-marinho.webp"} alt={s.name} className="size-full" />
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                   <span className="eyebrow">{s.city}</span>

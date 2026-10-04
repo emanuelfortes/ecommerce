@@ -6,7 +6,7 @@ import { getBrand } from "@/lib/data";
 import { aos } from "@/lib/aos";
 import { Button } from "@/components/ui/Button";
 import { Breadcrumbs, SectionHeading } from "@/components/ui/Primitives";
-import { ProductArt } from "@/components/product/ProductArt";
+import { Photo } from "@/components/shared/Photo";
 import { ProductImage } from "@/components/product/ProductImage";
 import { ProductGrid } from "@/components/product/ProductCard";
 import { Price } from "@/components/product/Price";
@@ -69,7 +69,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
           </div>
           <div className="relative lg:col-span-6" {...aos.zoomIn(120)}>
             <div className="relative mx-auto aspect-[4/5] max-w-[520px] overflow-hidden rounded-t-full border border-champagne/60">
-              <ProductArt kind={c.art} tone={3} variant={3} color={c.color} className="size-full" label={c.name} />
+              <Photo src={c.image} alt={c.name} className="size-full" />
             </div>
             <span className="absolute -left-4 top-16 hidden size-24 rounded-full border border-gold/60 md:block" />
           </div>
@@ -159,7 +159,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
               </span>
             </div>
             <div className="aspect-[16/10] overflow-hidden" {...aos.zoomIn()}>
-              <ProductArt kind={other.art} tone={3} variant={3} color="#24211F" className="size-full transition-transform duration-700 group-hover:scale-105" label={other.name} />
+              <Photo src={other.image} alt={other.name} className="size-full transition-transform duration-700 group-hover:scale-105" />
             </div>
           </Link>
         </section>

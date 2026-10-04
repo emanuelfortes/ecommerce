@@ -38,7 +38,7 @@ const groups: FaqGroup[] = [
           items: [
             ...g.items,
             { q: "As peças têm ajuste?", a: "Nas lojas físicas oferecemos ajustes gratuitos de barra e cintura para peças de alfaiataria compradas na Karen Michelly." },
-            { q: "Como cuidar das peças de seda?", a: "Lave à mão em água fria com sabão neutro, sem torcer, e seque à sombra. Veja o guia completo no nosso blog." },
+            { q: "Como cuidar das peças de cetim?", a: "Lave à mão em água fria com sabão neutro, sem torcer, e seque à sombra. Veja o guia completo no nosso blog." },
           ],
         }
       : g

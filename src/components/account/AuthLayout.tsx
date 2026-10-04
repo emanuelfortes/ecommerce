@@ -1,15 +1,13 @@
 import type { ReactNode } from "react";
-import type { ArtKind } from "@/lib/types";
 import { aos } from "@/lib/aos";
-import { ProductArt } from "@/components/product/ProductArt";
+import { Photo } from "@/components/shared/Photo";
 
 /** Layout dividido das telas de autenticação: painel editorial à esquerda, formulário à direita. */
 export function AuthLayout({
   eyebrow,
   title,
   text,
-  art = "dress",
-  color = "#D8C3A5",
+  image = "/img/vestido-midi-cetim-fenda-champagne.webp",
   quote = "Vestir-se bem é uma forma silenciosa de cuidado consigo mesma.",
   author = "Karen Michelly, fundadora",
   children,
@@ -18,8 +16,7 @@ export function AuthLayout({
   eyebrow: string;
   title: ReactNode;
   text?: ReactNode;
-  art?: ArtKind;
-  color?: string;
+  image?: string;
   quote?: string;
   author?: string;
   children: ReactNode;
@@ -29,7 +26,7 @@ export function AuthLayout({
     <section className="grid lg:min-h-[calc(100vh-80px)] lg:grid-cols-2">
       <div className="relative hidden overflow-hidden bg-ink lg:flex lg:flex-col lg:justify-between lg:p-12 xl:p-16">
         <div className="absolute inset-0" {...aos.zoomIn()}>
-          <ProductArt kind={art} tone={3} variant={3} color={color} className="size-full" />
+          <Photo src={image} alt="" className="size-full" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/10" aria-hidden />
         <span className="eyebrow relative flex items-center gap-3 text-champagne/80">

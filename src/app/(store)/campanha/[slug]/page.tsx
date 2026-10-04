@@ -7,7 +7,8 @@ import { getProduct } from "@/lib/data";
 import { aos } from "@/lib/aos";
 import { Button } from "@/components/ui/Button";
 import { Ornament, SectionHeading } from "@/components/ui/Primitives";
-import { ProductArt } from "@/components/product/ProductArt";
+import { Photo } from "@/components/shared/Photo";
+import { ProductImage } from "@/components/product/ProductImage";
 import { ProductCarousel } from "@/components/product/ProductCarousel";
 import { Price } from "@/components/product/Price";
 import { campaigns, getCampaign } from "@/components/content/landings";
@@ -40,7 +41,7 @@ export default async function CampaignPage({ params }: { params: Promise<{ slug:
       {/* Hero full-bleed preto com o logotipo */}
       <section className="relative isolate overflow-hidden bg-ink text-white">
         <div className="absolute inset-y-0 right-0 -z-10 hidden w-1/2 opacity-60 lg:block">
-          <ProductArt kind="dress" tone={3} variant={3} color="#24211F" className="size-full" label="Ilustração da coleção" />
+          <Photo src={campaign.image} alt={`Coleção ${campaign.name}`} className="size-full" />
         </div>
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/90 to-ink/30" aria-hidden />
         <div className="container-km flex min-h-[86vh] flex-col justify-center py-20 md:py-28">
@@ -91,7 +92,7 @@ export default async function CampaignPage({ params }: { params: Promise<{ slug:
           <div className="container-km grid items-center gap-12 py-20 md:grid-cols-2 md:gap-20 md:py-28">
             <div className={clsx("relative", i % 2 === 1 && "md:order-2")} {...aos.zoomIn()}>
               <div className="aspect-[4/5] overflow-hidden">
-                <ProductArt kind={b.art} tone={b.tone} color={b.color} className="size-full" label={b.title} />
+                <Photo src={b.image} alt={b.title} className="size-full" />
               </div>
               <span className={clsx("absolute -bottom-5 h-20 w-px bg-gold", i % 2 === 0 ? "right-10" : "left-10")} aria-hidden />
               <span className="absolute left-5 top-5 font-serif text-7xl leading-none text-white/80 mix-blend-difference">
@@ -127,13 +128,7 @@ export default async function CampaignPage({ params }: { params: Promise<{ slug:
                   {...aos.zoomIn((i % 3) * 80)}
                   className={clsx("group relative block self-start overflow-hidden", i % 3 === 1 && "md:mt-16")}
                 >
-                  <ProductArt
-                    kind={l.art}
-                    tone={l.tone}
-                    color={l.color}
-                    className="aspect-[3/4] w-full transition-transform duration-700 group-hover:scale-105"
-                    label={l.name}
-                  />
+                  {p && <ProductImage product={p} className="transition-transform duration-700 group-hover:scale-105" />}
                   <span className="absolute inset-x-0 bottom-0 flex flex-col gap-1 bg-gradient-to-t from-ink/90 to-transparent p-5 pt-16">
                     <span className="text-[10px] uppercase tracking-[0.24em] text-gold">{l.name}</span>
                     {p && <span className="font-serif text-xl leading-tight text-white">{p.name}</span>}

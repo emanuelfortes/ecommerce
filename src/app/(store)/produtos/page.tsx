@@ -6,7 +6,7 @@ import { ProductListing } from "@/components/product/ProductListing";
 
 export const metadata: Metadata = {
   title: "Todos os produtos",
-  description: "Toda a coleção Karen Michelly: vestidos, alfaiataria, seda, casacos, acessórios e moda praia.",
+  description: "Toda a coleção Karen Michelly: vestidos longos e midi, conjuntos de pantalona, alfaiataria, crochê e macacões.",
   alternates: { canonical: "/produtos" },
 };
 

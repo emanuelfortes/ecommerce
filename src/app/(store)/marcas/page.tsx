@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { brands, products } from "@/lib/data";
-import { getBrandArt } from "@/components/store/brandArt";
+import { getBrandImage } from "@/components/store/brandArt";
+import { Photo } from "@/components/shared/Photo";
 import { aos } from "@/lib/aos";
 import { PageHeader } from "@/components/ui/Primitives";
-import { ProductArt } from "@/components/product/ProductArt";
 
 export const metadata: Metadata = {
   title: "Marcas",
-  description: "Conheça as marcas da casa Karen Michelly: KM Atelier, KM Essentials, KM Noir e Maison Doré.",
+  description: "Conheça as marcas da casa Karen Michelly: KM Atelier, KM Essentials e KM Noir.",
 };
 
 /** Tela 17: Marcas */
@@ -26,7 +26,6 @@ export default function BrandsPage() {
         <div className="container-km flex flex-col gap-20 md:gap-28">
           {brands.map((b, i) => {
             const count = products.filter((p) => p.brand === b.slug).length;
-            const a = getBrandArt(b.slug);
             const reverse = i % 2 === 1;
             return (
               <article key={b.slug} className="grid items-center gap-10 md:grid-cols-12 md:gap-16">
@@ -36,7 +35,7 @@ export default function BrandsPage() {
                   className={`group block md:col-span-5 ${reverse ? "md:order-2 md:col-start-8" : ""}`}
                 >
                   <div className="aspect-[4/5] overflow-hidden rounded-t-full border border-line transition-colors duration-500 group-hover:border-gold">
-                    <ProductArt kind={a.art} tone={a.tone} color={a.color} variant={a.variant} className="size-full transition-transform duration-700 group-hover:scale-105" label={b.name} />
+                    <Photo src={getBrandImage(b.slug)} alt={b.name} className="size-full transition-transform duration-700 group-hover:scale-105" />
                   </div>
                 </Link>
                 <div {...aos.fadeUp(100)} className={`md:col-span-6 ${reverse ? "md:order-1 md:col-start-1" : "md:col-start-7"}`}>

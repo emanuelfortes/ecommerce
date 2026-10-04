@@ -4,7 +4,7 @@ import { onSale } from "@/lib/data";
 import { aos } from "@/lib/aos";
 import { Breadcrumbs } from "@/components/ui/Primitives";
 import { Button } from "@/components/ui/Button";
-import { ProductArt } from "@/components/product/ProductArt";
+import { Photo } from "@/components/shared/Photo";
 import { ProductListing } from "@/components/product/ProductListing";
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ export default function OffersPage() {
           </div>
           <div className="relative hidden md:col-span-5 md:block" {...aos.zoomIn(150)}>
             <div className="mx-auto aspect-[4/5] max-w-sm overflow-hidden rounded-t-full border border-gold/40">
-              <ProductArt kind="dress" tone={3} variant={3} color="#D8C3A5" className="size-full" label="Ofertas Karen Michelly" />
+              <Photo src="/img/conjunto-top-amarracao-calca-pantalona-pink.webp" alt="Conjunto Pantalona Capri em oferta" className="size-full" />
             </div>
             <span className="absolute -left-4 top-10 size-24 rounded-full border border-gold/50" />
           </div>

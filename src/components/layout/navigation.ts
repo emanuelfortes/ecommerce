@@ -8,11 +8,9 @@ export interface NavItem {
 export const mainNav: NavItem[] = [
   { label: "Novidades", href: "/novidades" },
   { label: "Vestidos", href: "/categoria/vestidos", mega: "vestidos" },
-  { label: "Blusas", href: "/categoria/blusas", mega: "blusas" },
-  { label: "Calças", href: "/categoria/calcas", mega: "calcas" },
-  { label: "Saias", href: "/categoria/saias", mega: "saias" },
-  { label: "Casacos", href: "/categoria/casacos", mega: "casacos" },
-  { label: "Acessórios", href: "/categoria/acessorios", mega: "acessorios" },
+  { label: "Conjuntos", href: "/categoria/conjuntos", mega: "conjuntos" },
+  { label: "Alfaiataria", href: "/categoria/alfaiataria", mega: "alfaiataria" },
+  { label: "Macacões", href: "/categoria/macacoes", mega: "macacoes" },
   { label: "Mais Vendidos", href: "/mais-vendidos" },
   { label: "Ofertas", href: "/ofertas", highlight: true },
 ];

@@ -31,7 +31,7 @@ const initialNotifications = [
   { id: 2, icon: Heart, title: "Um favorito baixou de preço", text: "Vestido Midi Cetim Aurora agora por R$ 689,90.", time: "Ontem, 18h20", unread: true },
   { id: 3, icon: Gift, title: "Cupom GOLD150 disponível", text: "R$ 150 OFF em compras acima de R$ 1.200 até 31 de outubro.", time: "02 out", unread: false },
   { id: 4, icon: Package, title: "Pedido KM-240850 em preparação", text: "Suas peças estão sendo embaladas com carinho no Atelier.", time: "30 set", unread: false },
-  { id: 5, icon: Sparkles, title: "Coleção Aurora chegou", text: "Cetim, seda e alfaiataria em tons de champagne.", time: "28 set", unread: false },
+  { id: 5, icon: Sparkles, title: "Coleção Aurora chegou", text: "Vestidos de cetim, conjuntos de pantalona e alfaiataria.", time: "28 set", unread: false },
 ];
 
 /** Telas 65 e 105: preferências e central de notificações */

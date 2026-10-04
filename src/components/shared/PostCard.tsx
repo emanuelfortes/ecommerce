@@ -3,17 +3,16 @@ import type { BlogPost } from "@/lib/types";
 import { blogCategories, getAuthor } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import { aos } from "@/lib/aos";
-import { ProductArt } from "@/components/product/ProductArt";
+import { Photo } from "@/components/shared/Photo";
 
 export function PostCard({ post, index = 0, featured }: { post: BlogPost; index?: number; featured?: boolean }) {
   const cat = blogCategories.find((c) => c.slug === post.category);
   return (
     <article {...aos.fadeUp(index * 100)} className="group flex flex-col">
       <Link href={`/blog/${post.slug}`} className="block overflow-hidden">
-        <ProductArt
-          kind={post.art}
-          tone={post.tone}
-          color={["#D8C3A5", "#0D0D0D", "#E8D8D2", "#F7F4EF"][post.tone]}
+        <Photo
+          src={post.image}
+          alt={post.title}
           className={`w-full transition-transform duration-700 group-hover:scale-105 ${featured ? "aspect-[16/10]" : "aspect-[4/3]"}`}
         />
       </Link>

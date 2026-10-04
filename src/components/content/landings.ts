@@ -1,4 +1,4 @@
-import type { ArtKind, Product } from "@/lib/types";
+import type { Product } from "@/lib/types";
 import { getProduct, onSale, products } from "@/lib/data";
 
 /* ------------------------------------------------------------------
@@ -15,8 +15,9 @@ export interface Campaign {
   season: string;
   headline: string;
   intro: string;
-  blocks: { eyebrow: string; title: string; text: string; art: ArtKind; color: string; tone: number; cta?: { label: string; href: string } }[];
-  looks: { name: string; art: ArtKind; color: string; tone: number; productId: string }[];
+  image: string;
+  blocks: { eyebrow: string; title: string; text: string; image: string; cta?: { label: string; href: string } }[];
+  looks: { name: string; productId: string }[];
   products: () => Product[];
 }
 
@@ -25,47 +26,42 @@ export const campaigns: Campaign[] = [
     slug: "aurora",
     name: "Aurora",
     season: "Primavera Verão 2027",
-    headline: "A luz que nasce devagar",
+    headline: "Cores que vestem presença",
     intro:
-      "Aurora é o instante em que a noite cede ao dia. Uma coleção de cetins líquidos, linhos que respiram e pontos de luz dourada, criada para celebrar 15 anos de ateliê.",
+      "Aurora é o instante em que a noite cede ao dia. Uma coleção de cetins que refletem a luz, pantalonas que dançam com o vento e crochê feito à mão, criada para celebrar 15 anos de ateliê.",
+    image: "/img/vestido-longo-camadas-laranja.webp",
     blocks: [
       {
         eyebrow: "Capítulo I · Cetim",
         title: "Fluidez que acompanha o movimento",
-        text: "O vestido midi Aurora foi cortado em viés para deslizar sobre o corpo. O cetim de toque seco reflete a luz sem brilho excessivo, do café da manhã ao jantar.",
-        art: "dress",
-        color: "#D8C3A5",
-        tone: 0,
+        text: "O vestido midi Aurora desliza sobre o corpo com drapeado lateral e fenda que se revela a cada passo. O cetim champagne reflete a luz sem brilho excessivo, do jantar à festa.",
+        image: "/img/vestido-midi-cetim-fenda-champagne.webp",
         cta: { label: "Ver vestidos", href: "/categoria/vestidos" },
       },
       {
         eyebrow: "Capítulo II · Alfaiataria",
         title: "Estrutura com leveza",
-        text: "Blazers alongados e calças de cintura alta em crepe de lã fria. Ombros precisos, forros de seda e botões banhados a ouro 18k.",
-        art: "blazer",
-        color: "#0D0D0D",
-        tone: 2,
+        text: "Blazers alongados, camisas de cetim e calças de cintura alta em azul marinho e off-white. Ombros precisos, botões dourados e caimento que alonga a silhueta.",
+        image: "/img/conjunto-alfaiataria-blazer-camisa-cetim-azul-marinho.webp",
         cta: { label: "Explorar alfaiataria", href: "/colecao/alfaiataria" },
       },
       {
-        eyebrow: "Capítulo III · Ouro",
-        title: "O detalhe que assina",
-        text: "Colares de elos, brincos de pérola e tiras douradas. Acessórios Maison Doré, feitos à mão em Franca, para pontuar o look com delicadeza.",
-        art: "necklace",
-        color: "#C6A15B",
-        tone: 1,
-        cta: { label: "Ver acessórios", href: "/categoria/acessorios" },
+        eyebrow: "Capítulo III · Verão",
+        title: "Leveza para dias de sol",
+        text: "Conjuntos de pantalona em pink, preto e verde militar, vestidos longos em camadas e o crochê Ibiza feito à mão. Peças que respiram, da praia ao pôr do sol.",
+        image: "/img/conjunto-croche-kimono-short-off-white.webp",
+        cta: { label: "Ver conjuntos", href: "/categoria/conjuntos" },
       },
     ],
     looks: [
-      { name: "Look 01 · Amanhecer", art: "dress", color: "#D8C3A5", tone: 0, productId: "p1" },
-      { name: "Look 02 · Atelier", art: "blazer", color: "#0D0D0D", tone: 1, productId: "p4" },
-      { name: "Look 03 · Seda", art: "blouse", color: "#F7F4EF", tone: 2, productId: "p2" },
-      { name: "Look 04 · Areia", art: "pants", color: "#CDBBA3", tone: 0, productId: "p3" },
-      { name: "Look 05 · Plissê", art: "skirt", color: "#E8D8D2", tone: 1, productId: "p5" },
-      { name: "Look 06 · Noite", art: "heels", color: "#0D0D0D", tone: 3, productId: "p7" },
+      { name: "Look 01 · Amanhecer", productId: "p3" },
+      { name: "Look 02 · Atelier", productId: "p5" },
+      { name: "Look 03 · Brisa", productId: "p4" },
+      { name: "Look 04 · Esmeralda", productId: "p7" },
+      { name: "Look 05 · Ibiza", productId: "p12" },
+      { name: "Look 06 · Noite", productId: "p2" },
     ],
-    products: () => pick(["p1", "p4", "p2", "p3", "p5", "p11", "p7", "p20", "p12"]),
+    products: () => pick(["p1", "p3", "p5", "p4", "p7", "p12", "p10", "p9", "p2"]),
   },
 ];
 
@@ -78,8 +74,7 @@ export interface Collection {
   eyebrow: string;
   headline: string;
   intro: string;
-  art: ArtKind;
-  color: string;
+  image: string;
   highlights: string[];
   featured: () => Product[];
   all: () => Product[];
@@ -94,25 +89,21 @@ export const collections: Collection[] = [
     eyebrow: "Edit · Alfaiataria",
     headline: "Estrutura que fala por você",
     intro:
-      "Blazers de ombros precisos, calças de cintura alta e macacões que vestem com intenção. Uma seleção curada para a mulher que decide, lidera e não abre mão do conforto.",
-    art: "blazer",
-    color: "#0D0D0D",
-    highlights: ["Crepe de lã fria e linho italiano", "Modelagem exclusiva do ateliê", "Ajustes gratuitos na loja física"],
-    featured: () => pick(["p4", "p3", "p19"]),
-    all: () =>
-      products.filter(
-        (p) => ["blazers", "trench", "alfaiataria", "wide-leg", "camisas"].includes(p.subcategory) || p.id === "p19" || p.id === "p16"
-      ),
+      "Terninhos de ombros precisos, calças de cintura alta e macacões que vestem com intenção. Uma seleção curada para a mulher que decide, lidera e não abre mão do conforto.",
+    image: "/img/conjunto-alfaiataria-blazer-calca-off-white.webp",
+    highlights: ["Crepe de lã fria e cetim acetinado", "Modelagem exclusiva do ateliê", "Ajustes gratuitos na loja física"],
+    featured: () => pick(["p5", "p6", "p7"]),
+    all: () => products.filter((p) => p.brand === "km-atelier"),
     tips: [
       { title: "Ombro no lugar certo", text: "A costura do ombro do blazer deve terminar exatamente onde o seu ombro termina. É o ajuste mais difícil de corrigir depois." },
-      { title: "Barra na medida do salto", text: "Para calças retas, a barra deve tocar o peito do pé com o sapato que você mais usa. Fazemos esse ajuste gratuitamente na loja." },
-      { title: "Monocromia elegante", text: "Conjuntos no mesmo tom alongam a silhueta. Quebre com uma camisa de seda off-white e um ponto de luz dourado." },
-      { title: "Do escritório ao jantar", text: "Troque a camisa por um top de cetim, acrescente brincos de pérola e um scarpin de bico fino. Pronto." },
+      { title: "Barra na medida do salto", text: "Para calças de alfaiataria, a barra deve cobrir quase todo o sapato que você mais usa. Fazemos esse ajuste gratuitamente na loja." },
+      { title: "Monocromia elegante", text: "Conjuntos no mesmo tom alongam a silhueta. O Veneza em azul marinho e o Milano em off-white são prova disso." },
+      { title: "Do escritório ao jantar", text: "Troque a camisa por uma regata de cetim, solte o blazer sobre os ombros e finalize com um scarpin de bico fino." },
     ],
     related: [
-      { label: "Blazers", href: "/categoria/casacos/blazers" },
-      { label: "Calças de alfaiataria", href: "/categoria/calcas/alfaiataria" },
-      { label: "Camisas", href: "/categoria/blusas/camisas" },
+      { label: "Terninhos", href: "/categoria/alfaiataria/terninhos" },
+      { label: "Macacões", href: "/categoria/macacoes" },
+      { label: "Conjunto com saia", href: "/categoria/conjuntos/saia" },
     ],
   },
   {
@@ -121,25 +112,21 @@ export const collections: Collection[] = [
     eyebrow: "Edit · Festa",
     headline: "Para noites inesquecíveis",
     intro:
-      "Cetim, crepe e brilho na medida. Do casamento ao jantar de gala, uma curadoria de vestidos, acessórios e sapatos para brilhar com sofisticação e conforto até o fim da noite.",
-    art: "dress",
-    color: "#0D0D0D",
-    highlights: ["Linha KM Noir", "Acessórios banhados a ouro 18k", "Consultoria de estilo por WhatsApp"],
-    featured: () => pick(["p12", "p23", "p24"]),
-    all: () =>
-      products.filter(
-        (p) => p.subcategory === "festa" || p.brand === "km-noir" || ["p1", "p7", "p11", "p20", "p23", "p24"].includes(p.id)
-      ),
+      "Cetim champagne, corset preto e verde esmeralda. Do casamento ao jantar de gala, uma curadoria de peças para brilhar com sofisticação e conforto até o fim da noite.",
+    image: "/img/vestido-midi-corset-fenda-preto.webp",
+    highlights: ["Linha KM Noir", "Fendas e corsets estruturados", "Consultoria de estilo por WhatsApp"],
+    featured: () => pick(["p1", "p2", "p7"]),
+    all: () => products.filter((p) => p.brand === "km-noir" || ["p4", "p7", "p8"].includes(p.id)),
     tips: [
-      { title: "Leia o dress code", text: "Black tie pede longo. Passeio completo aceita midi. Na dúvida, um midi de cetim com acessórios marcantes nunca erra." },
-      { title: "Um único protagonista", text: "Se o vestido brilha, os acessórios sussurram. Se o vestido é sóbrio, deixe o colar ou a clutch falarem." },
+      { title: "Leia o dress code", text: "Black tie pede longo. Passeio completo aceita midi. Na dúvida, um midi de cetim com sandália de tiras nunca erra." },
+      { title: "Um único protagonista", text: "Se o vestido tem fenda e brilho, os acessórios sussurram. Se o corte é sóbrio, deixe um brinco marcante falar." },
       { title: "Conforto é elegância", text: "Teste o sapato em casa por uma hora antes do evento. Sandálias de tiras finas são aliadas de festas longas." },
-      { title: "Casamento de dia", text: "Prefira tons claros como champagne e nude, tecidos fluidos e joias delicadas de pérola." },
+      { title: "Casamento de dia", text: "Prefira tons claros como champagne e off-white, tecidos fluidos como o do vestido Brisa e joias delicadas." },
     ],
     related: [
-      { label: "Vestidos de festa", href: "/categoria/vestidos/festa" },
-      { label: "Bolsas", href: "/categoria/acessorios/bolsas" },
-      { label: "Joias", href: "/categoria/acessorios/joias" },
+      { label: "Vestidos midi", href: "/categoria/vestidos/midi" },
+      { label: "Vestidos longos", href: "/categoria/vestidos/longos" },
+      { label: "Macacões", href: "/categoria/macacoes" },
     ],
   },
 ];
