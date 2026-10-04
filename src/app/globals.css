@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/* =========================================================
+   KAREN MICHELLY · Design tokens
+   Regra principal: preto (#0D0D0D) e off-white (#F7F4EF) dominam.
+   O dourado (#C6A15B) aparece apenas como detalhe.
+   ========================================================= */
+@theme {
+  --color-ink: #0d0d0d;          /* Preto sofisticado (primária) */
+  --color-offwhite: #f7f4ef;     /* Fundo principal */
+  --color-nude: #e8d8d2;         /* Fundo de destaque */
+  --color-champagne: #d8c3a5;    /* Detalhe / hover de cards */
+  --color-gold: #c6a15b;         /* Detalhe de luxo (usar com moderação) */
+  --color-graphite: #24211f;     /* Texto principal */
+  --color-taupe: #9b8b7a;        /* Texto secundário */
+  --color-line: #e6dfd5;         /* Bordas suaves derivadas do off-white */
+  --color-success: #5f7a5a;
+  --color-danger: #a24a3f;
+  --color-warning: #b7893a;
+
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Jost Variable", "Jost", ui-sans-serif, system-ui, sans-serif;
+
+  --tracking-luxe: 0.28em;
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --breakpoint-xs: 26rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-offwhite font-sans text-graphite antialiased;
+    font-weight: 350;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif text-ink;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: var(--color-champagne);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 1px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+  input, select, textarea, button {
+    font: inherit;
+  }
+  /* Evita que conteúdo largo (tabelas, e-mails, skeletons) estoure colunas de grid no mobile */
+  :where(.grid) > * {
+    min-width: 0;
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[12px] font-medium uppercase transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-40;
+  letter-spacing: 0.2em;
+}
+@utility btn-primary {
+  @apply btn bg-ink text-white hover:bg-gold hover:text-ink;
+}
+@utility btn-secondary {
+  @apply btn border border-ink bg-transparent text-ink hover:bg-ink hover:text-white;
+}
+@utility btn-gold {
+  @apply btn bg-gold text-ink hover:bg-white;
+}
+@utility btn-light {
+  @apply btn border border-offwhite/60 text-offwhite hover:border-gold hover:bg-gold hover:text-ink;
+}
+@utility btn-sm {
+  @apply px-4! py-2.5! text-[11px]!;
+}
+@utility field {
+  @apply w-full border border-line bg-white px-4 py-3.5 text-sm text-graphite placeholder:text-taupe/70 transition-colors focus:border-ink focus:outline-none;
+}
+@utility eyebrow {
+  @apply text-[11px] font-medium uppercase text-taupe;
+  letter-spacing: var(--tracking-luxe);
+}
+
+@layer components {
+  .container-km {
+    @apply mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-10;
+  }
+
+
+  /* Botões: ver @utility abaixo */
+  .link-luxe {
+    @apply relative inline-block text-[12px] uppercase text-ink;
+    letter-spacing: 0.2em;
+  }
+  .link-luxe::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 h-px w-full origin-left bg-gold transition-transform duration-500;
+    transform: scaleX(0.35);
+  }
+  .link-luxe:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Formulários */
+  .field-label {
+    @apply mb-2 block text-[11px] font-medium uppercase text-graphite;
+    letter-spacing: 0.18em;
+  }
+  .field-error {
+    @apply border-danger;
+  }
+
+  .card {
+    @apply border border-line bg-white;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-nude/60;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  /* Ornamento dourado fino */
+  .gold-rule {
+    @apply block h-px w-12 bg-gold;
+  }
+
+  .prose-km p {
+    @apply mb-5 leading-relaxed text-graphite/90;
+  }
+  .prose-km h2 {
+    @apply mb-4 mt-10 text-3xl;
+  }
+  .prose-km h3 {
+    @apply mb-3 mt-8 text-2xl;
+  }
+  .prose-km ul {
+    @apply mb-5 list-disc space-y-2 pl-5 text-graphite/90 marker:text-gold;
+  }
+  .prose-km a {
+    @apply text-ink underline decoration-gold underline-offset-4;
+  }
+}
+
+/* =========================================================
+   AOS: o projeto usa SOMENTE duas animações, repetidas a cada
+   entrada no viewport (once: false):
+     1. data-aos="fade-up"
+     2. data-aos="zoom-in" (suavizado abaixo para ficar elegante)
+   ========================================================= */
+[data-aos="zoom-in"] {
+  transform: scale(0.94) !important;
+}
+[data-aos="zoom-in"].aos-animate {
+  transform: scale(1) !important;
+}
+[data-aos="fade-up"] {
+  transform: translate3d(0, 28px, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Micro-transição de entrada dos toasts (feedback de UI, não é animação de scroll) */
+@keyframes km-toast {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
