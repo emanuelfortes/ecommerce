@@ -168,7 +168,7 @@ export function QuickView() {
     <Modal open={!!p} onClose={close} size="xl">
       {p && (
         <div className="grid md:grid-cols-2">
-          <div className="bg-nude">
+          <div className="bg-nude md:sticky md:top-0 md:self-start">
             <ProductImage product={p} index={img} color={color} />
             <div className={clsx("grid grid-cols-4 gap-1 p-1", p.images?.length === 1 && "hidden")}>
               {(p.images?.length ? p.images.map((_, i) => i) : [0, 1, 2, 3]).map((i) => (

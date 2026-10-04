@@ -121,7 +121,7 @@ export function Modal({
           role="dialog"
           aria-modal="true"
           className={clsx(
-            "pointer-events-auto relative w-full bg-offwhite shadow-2xl transition-all duration-500 ease-[var(--ease-luxe)]",
+            "pointer-events-auto relative flex max-h-[calc(100dvh-2rem)] w-full flex-col bg-offwhite shadow-2xl transition-all duration-500 ease-[var(--ease-luxe)]",
             size === "sm" && "max-w-sm",
             size === "md" && "max-w-lg",
             size === "lg" && "max-w-3xl",
@@ -131,7 +131,8 @@ export function Modal({
           )}
         >
           {!bare && <CloseButton onClick={onClose} className="absolute right-2 top-2 z-10" />}
-          {children}
+          {/* conteúdo mais alto que a tela rola dentro do modal */}
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">{children}</div>
         </div>
       </div>
     </>
